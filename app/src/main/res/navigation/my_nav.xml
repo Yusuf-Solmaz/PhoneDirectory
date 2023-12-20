@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/mainDirectoryFragment">
+
+    <fragment
+        android:id="@+id/mainDirectoryFragment"
+        android:name="com.yusuf.phonedirectory.ui.MainDirectoryFragment"
+        android:label="fragment_main_directory"
+        tools:layout="@layout/fragment_main_directory" >
+        <action
+            android:id="@+id/action_mainDirectoryFragment_to_phoneInfoFragment"
+            app:destination="@id/phoneInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneInfoFragment"
+        android:name="com.yusuf.phonedirectory.ui.PhoneInfoFragment"
+        android:label="fragment_phone_info"
+        tools:layout="@layout/fragment_phone_info" />
+</navigation>
