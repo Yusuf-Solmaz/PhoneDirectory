@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="toolbarTextColor">#3887BE</color>
     <color name="toolbarColor">#52D3D8</color>
+    <color name="contactInfoColor">#89D4E8</color>
 </resources>
