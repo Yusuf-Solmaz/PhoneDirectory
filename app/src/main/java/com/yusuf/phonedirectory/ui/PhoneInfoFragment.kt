@@ -2,6 +2,7 @@ package com.yusuf.phonedirectory.ui
 
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +38,10 @@ class PhoneInfoFragment : Fragment() {
                 binding.Save.visibility = Button.INVISIBLE
                 binding.editTextContactName.isEnabled = false
                 binding.toolbarPhoneInfo.isEnabled = false
+
+                binding.editTextContactName.text = Editable.Factory.getInstance().newEditable(bundle.kisi.kisi_ad)
+                binding.editTextContactNu.text = Editable.Factory.getInstance().newEditable(bundle.kisi.kisi_tel)
+
             }
 
         }

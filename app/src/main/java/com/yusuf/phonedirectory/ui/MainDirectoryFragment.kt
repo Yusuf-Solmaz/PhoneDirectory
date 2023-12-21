@@ -11,12 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.yusuf.phonedirectory.R
 import com.yusuf.phonedirectory.data.entity.Kisiler
 import com.yusuf.phonedirectory.databinding.FragmentMainDirectoryBinding
+import com.yusuf.phonedirectory.ui.adapter.MainDirectoryAdapter
 
 
 class MainDirectoryFragment : Fragment() {
 
 
     private lateinit var binding: FragmentMainDirectoryBinding
+    private lateinit var adapter: MainDirectoryAdapter
+    private lateinit var contacts: MutableList<Kisiler>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,12 +37,19 @@ class MainDirectoryFragment : Fragment() {
 
         (activity as? AppCompatActivity)?.setSupportActionBar(binding.toolbar)
 
-        // Toolbar'ın yüksekliğini ayarlayın.
-        //binding.toolbar.layoutParams?.height = resources.getDimensionPixelSize(R.dimen.toolbar_height)
+       contacts = mutableListOf()
 
+        val kisi1 = Kisiler(1,"Yusuf","05340334335")
+        val kisi2 = Kisiler(1,"Erkam","053404513335")
+
+        contacts.add(kisi1)
+        contacts.add(kisi2)
 
         binding.mainDirectoryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        //adapter
+
+        adapter = MainDirectoryAdapter(contacts,requireContext())
+
+        binding.mainDirectoryRecyclerView.adapter = adapter
 
         binding.fab.setOnClickListener {
             val action = MainDirectoryFragmentDirections.actionMainDirectoryFragmentToPhoneInfoFragment(
