@@ -18,5 +18,12 @@
         android:id="@+id/phoneInfoFragment"
         android:name="com.yusuf.phonedirectory.ui.PhoneInfoFragment"
         android:label="fragment_phone_info"
-        tools:layout="@layout/fragment_phone_info" />
+        tools:layout="@layout/fragment_phone_info" >
+        <argument
+            android:name="kisi"
+            app:argType="com.yusuf.phonedirectory.data.entity.Kisiler" />
+        <argument
+            android:name="info"
+            app:argType="integer" />
+    </fragment>
 </navigation>
