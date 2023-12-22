@@ -17,7 +17,6 @@ import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.yusuf.phonedirectory.R
 import com.yusuf.phonedirectory.data.entity.Kisiler
 import com.yusuf.phonedirectory.databinding.FragmentMainDirectoryBinding
@@ -81,8 +80,6 @@ class MainDirectoryFragment : Fragment(), SearchView.OnQueryTextListener {
         
 
 
-
-
     }
 
     override fun onQueryTextSubmit(p0: String?): Boolean {
@@ -95,7 +92,11 @@ class MainDirectoryFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     fun fabButtonOnClick(){
-        val action = MainDirectoryFragmentDirections.actionMainDirectoryFragmentToPhoneInfoFragment(null,0)
+        val action =
+            com.yusuf.phonedirectory.ui.MainDirectoryFragmentDirections.actionMainDirectoryFragmentToPhoneInfoFragment(
+                null,
+                0
+            )
         findNavController().navigate(action)
     }
 

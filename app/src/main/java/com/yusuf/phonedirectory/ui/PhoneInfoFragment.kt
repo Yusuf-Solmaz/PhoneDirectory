@@ -1,6 +1,5 @@
 package com.yusuf.phonedirectory.ui
 
-import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.util.Log
@@ -28,17 +27,19 @@ class PhoneInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bundle : PhoneInfoFragmentArgs by navArgs()
+        val bundle : com.yusuf.phonedirectory.ui.PhoneInfoFragmentArgs by navArgs()
 
         when (bundle.info){
             0 -> {
                 binding.Save.visibility = Button.VISIBLE
+                binding.update.visibility = Button.GONE
                 binding.editTextContactName.isEnabled = true
                 binding.toolbarPhoneInfo.isEnabled = true
             }
 
             1 -> {
-                binding.Save.visibility = Button.INVISIBLE
+                binding.update.visibility = Button.VISIBLE
+                binding.Save.visibility = Button.GONE
                 binding.editTextContactName.isEnabled = false
                 binding.toolbarPhoneInfo.isEnabled = false
 
@@ -54,6 +55,11 @@ class PhoneInfoFragment : Fragment() {
     fun saveContact(contactName: String, contactNumber:String){
         Log.e("saveInfo", contactName + contactNumber)
     }
+
+    fun updateContact(contactName: String, contactNumber:String){
+        Log.e("saveInfo", contactName + contactNumber)
+    }
+
 
 }
 
