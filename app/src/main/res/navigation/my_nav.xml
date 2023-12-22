@@ -21,7 +21,8 @@
         tools:layout="@layout/fragment_phone_info" >
         <argument
             android:name="kisi"
-            app:argType="com.yusuf.phonedirectory.data.entity.Kisiler" />
+            app:argType="com.yusuf.phonedirectory.data.entity.Kisiler"
+            app:nullable="true" />
         <argument
             android:name="info"
             app:argType="integer" />

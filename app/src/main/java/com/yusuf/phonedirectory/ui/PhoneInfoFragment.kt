@@ -42,8 +42,8 @@ class PhoneInfoFragment : Fragment() {
                 binding.editTextContactName.isEnabled = false
                 binding.toolbarPhoneInfo.isEnabled = false
 
-                binding.editTextContactName.text = Editable.Factory.getInstance().newEditable(bundle.kisi.kisi_ad)
-                binding.editTextContactNu.text = Editable.Factory.getInstance().newEditable(bundle.kisi.kisi_tel)
+                binding.editTextContactName.text = Editable.Factory.getInstance().newEditable(bundle.kisi!!.kisi_ad)
+                binding.editTextContactNu.text = Editable.Factory.getInstance().newEditable(bundle.kisi!!.kisi_tel)
 
             }
 

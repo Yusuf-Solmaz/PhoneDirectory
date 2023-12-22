@@ -29,11 +29,13 @@
             app:titleTextColor="@color/toolbarTextColor" />
 
         <EditText
+
             android:id="@+id/editTextContactName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="219dp"
+            android:layout_height="33dp"
+            android:background="@drawable/custom_edittext_background"
             android:ems="10"
-            android:hint="Name:"
+            android:hint="    Name:"
             android:inputType="text"
             app:layout_constraintBottom_toTopOf="@+id/editTextContactNu"
             app:layout_constraintEnd_toEndOf="parent"
@@ -54,15 +56,18 @@
 
         <EditText
             android:id="@+id/editTextContactNu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="219dp"
+            android:layout_height="33dp"
+            android:background="@drawable/custom_edittext_background"
             android:ems="10"
-            android:hint="Number:"
+            android:hint="    Number:"
             android:inputType="number"
             app:layout_constraintBottom_toTopOf="@+id/Save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextContactName" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

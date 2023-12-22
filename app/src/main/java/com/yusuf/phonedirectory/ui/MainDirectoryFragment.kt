@@ -14,6 +14,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuProvider
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,8 +35,8 @@ class MainDirectoryFragment : Fragment(), SearchView.OnQueryTextListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMainDirectoryBinding.inflate(inflater, container, false)
-
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main_directory,container, false)
+        binding.phoneMainFragment=this
 
 
         return binding.root
@@ -72,17 +73,14 @@ class MainDirectoryFragment : Fragment(), SearchView.OnQueryTextListener {
 
         },viewLifecycleOwner,Lifecycle.State.RESUMED)
 
-        binding.mainDirectoryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        //binding.mainDirectoryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         adapter = MainDirectoryAdapter(contacts,requireContext())
 
         binding.mainDirectoryRecyclerView.adapter = adapter
+        
 
-        binding.fab.setOnClickListener {
-            val action = MainDirectoryFragmentDirections.actionMainDirectoryFragmentToPhoneInfoFragment(
-                Kisiler(0,"",""),0)
-            findNavController().navigate(action)
-        }
+
 
 
     }
@@ -96,5 +94,9 @@ class MainDirectoryFragment : Fragment(), SearchView.OnQueryTextListener {
         return true
     }
 
+    fun fabButtonOnClick(){
+        val action = MainDirectoryFragmentDirections.actionMainDirectoryFragmentToPhoneInfoFragment(null,0)
+        findNavController().navigate(action)
+    }
 
 }
