@@ -9,19 +9,32 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.yusuf.phonedirectory.R
 import com.yusuf.phonedirectory.databinding.FragmentPhoneInfoBinding
+import com.yusuf.phonedirectory.ui.viewModel.PhoneInfoViewModel
 
 class PhoneInfoFragment : Fragment() {
 
     private lateinit var binding: FragmentPhoneInfoBinding
+    private lateinit var viewModel: PhoneInfoViewModel
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_phone_info,container,false)
         binding.phoneInfoFragment = this
+
+
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val tempViewModel : PhoneInfoViewModel by viewModels()
+        viewModel = tempViewModel
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,11 +66,11 @@ class PhoneInfoFragment : Fragment() {
 
 
     fun saveContact(contactName: String, contactNumber:String){
-        Log.e("saveInfo", contactName + contactNumber)
+        viewModel.saveContact(contactName, contactNumber)
     }
 
     fun updateContact(contactName: String, contactNumber:String){
-        Log.e("saveInfo", contactName + contactNumber)
+        viewModel.updateContact(contactName, contactNumber)
     }
 
 

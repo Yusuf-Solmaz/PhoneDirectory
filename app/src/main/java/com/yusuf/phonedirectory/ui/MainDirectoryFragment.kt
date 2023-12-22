@@ -15,12 +15,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.yusuf.phonedirectory.R
 import com.yusuf.phonedirectory.data.entity.Kisiler
 import com.yusuf.phonedirectory.databinding.FragmentMainDirectoryBinding
 import com.yusuf.phonedirectory.ui.adapter.MainDirectoryAdapter
+import com.yusuf.phonedirectory.ui.viewModel.MainDirectoryViewModel
 
 
 class MainDirectoryFragment : Fragment(), SearchView.OnQueryTextListener {
@@ -30,6 +32,8 @@ class MainDirectoryFragment : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var adapter: MainDirectoryAdapter
     private lateinit var contacts: MutableList<Kisiler>
 
+    private lateinit var viewModel: MainDirectoryViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,7 +42,14 @@ class MainDirectoryFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.phoneMainFragment=this
 
 
+
         return binding.root
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel : MainDirectoryViewModel by viewModels()
+        viewModel = tempViewModel
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
