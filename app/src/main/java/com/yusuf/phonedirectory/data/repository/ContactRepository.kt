@@ -7,15 +7,14 @@ import com.yusuf.phonedirectory.data.entity.ResultKisiler
 import com.yusuf.phonedirectory.data.service.ContactsService
 
 class ContactRepository (val api:ContactsApi) : ContactsService  {
-
-
-    override fun saveContact(contactName: String, contactNumber: String) {
-        Log.i("saveInfo","$contactName   $contactNumber")
+    override suspend fun insertContact(contactName: String, contactNumber: String): CRUDResult {
+        return api.insertContact(contactName,contactNumber)
     }
 
-    override fun updateContact(contactName: String, contactNumber: String) {
-        Log.i("updateInfo","$contactName   $contactNumber")
+    override suspend fun updateContact(contactName: String, contactNumber: String): CRUDResult {
+        TODO("Not yet implemented")
     }
+
 
     override suspend fun searchContact(contact: String): ResultKisiler {
         return api.searchContact(contact)

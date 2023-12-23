@@ -48,6 +48,9 @@ class PhoneInfoFragment : Fragment() {
 
         val tempViewModel : PhoneInfoViewModel by viewModels()
         viewModel = tempViewModel
+
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -100,17 +103,25 @@ class PhoneInfoFragment : Fragment() {
             }
 
         }
+
+
     }
 
 
     fun saveContact(contactName: String, contactNumber:String){
         viewModel.saveContact(contactName, contactNumber)
+        goToMainDirectoryFragment()
     }
 
     fun updateContact(contactName: String, contactNumber:String){
         viewModel.updateContact(contactName, contactNumber)
+        goToMainDirectoryFragment()
     }
 
+    private fun goToMainDirectoryFragment(){
+        val action = PhoneInfoFragmentDirections.actionPhoneInfoFragmentToMainDirectoryFragment()
+        findNavController().navigate(action)
+    }
 
 }
 

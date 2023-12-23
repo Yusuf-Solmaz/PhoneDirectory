@@ -8,9 +8,9 @@ import retrofit2.Call
 import java.util.ArrayList
 
 interface ContactsService {
-    fun saveContact(contactName: String, contactNumber:String)
+    suspend fun insertContact(contactName: String, contactNumber:String) : CRUDResult
 
-    fun updateContact(contactName: String, contactNumber:String)
+    suspend fun updateContact(contactName: String, contactNumber:String) : CRUDResult
 
     suspend fun searchContact(contact:String) : ResultKisiler
 

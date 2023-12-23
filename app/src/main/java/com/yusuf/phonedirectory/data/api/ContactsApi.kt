@@ -5,6 +5,7 @@ import com.yusuf.phonedirectory.data.entity.CRUDResult
 import com.yusuf.phonedirectory.data.entity.ResultKisiler
 import com.yusuf.phonedirectory.utils.Utils.Companion.DELETE_URL
 import com.yusuf.phonedirectory.utils.Utils.Companion.GET_URL
+import com.yusuf.phonedirectory.utils.Utils.Companion.INSERT_URL
 import com.yusuf.phonedirectory.utils.Utils.Companion.SEARCH_URL
 import retrofit2.Call
 import retrofit2.http.Field
@@ -24,4 +25,8 @@ interface ContactsApi {
     @POST(DELETE_URL)
     @FormUrlEncoded
     suspend fun deleteContact(@Field("kisi_id") kisi_id:Int) : CRUDResult
+
+    @POST(INSERT_URL)
+    @FormUrlEncoded
+    suspend fun insertContact(@Field("kisi_ad") kisi_ad:String,@Field("kisi_tel") kisi_tel:String) : CRUDResult
 }
