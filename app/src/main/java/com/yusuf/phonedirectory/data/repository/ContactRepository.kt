@@ -11,8 +11,14 @@ class ContactRepository (val api:ContactsApi) : ContactsService  {
         return api.insertContact(contactName,contactNumber)
     }
 
-    override suspend fun updateContact(contactName: String, contactNumber: String): CRUDResult {
-        TODO("Not yet implemented")
+    override suspend fun updateContact(
+        contactId: Int,
+        contactName: String,
+        contactNumber: String
+    ): CRUDResult {
+        Log.i("updateRepo","${contactId} ${contactName.toString()} ${contactNumber }")
+
+        return api.updateContact(contactId,contactName,contactNumber)
     }
 
 

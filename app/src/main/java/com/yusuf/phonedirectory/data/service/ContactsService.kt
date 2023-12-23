@@ -10,7 +10,7 @@ import java.util.ArrayList
 interface ContactsService {
     suspend fun insertContact(contactName: String, contactNumber:String) : CRUDResult
 
-    suspend fun updateContact(contactName: String, contactNumber:String) : CRUDResult
+    suspend fun updateContact(contactId:Int,contactName: String, contactNumber:String) : CRUDResult
 
     suspend fun searchContact(contact:String) : ResultKisiler
 

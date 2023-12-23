@@ -1,5 +1,6 @@
 package com.yusuf.phonedirectory.ui.viewModel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yusuf.phonedirectory.data.repository.ContactRepository
@@ -20,8 +21,12 @@ class PhoneInfoViewModel @Inject constructor(var repo: ContactRepository) : View
     }
 
 
-    fun updateContact(contactName: String, contactNumber: String){
+    fun updateContact(contactId:Int,contactName: String, contactNumber: String){
+        viewModelScope.launch {
+            repo.updateContact(contactId, contactName, contactNumber)
+            Log.i("updateNew","${contactId} ${contactName.toString()} ${contactNumber }")
 
+        }
+        }
     }
 
-}

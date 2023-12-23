@@ -8,5 +8,6 @@ class Utils {
         const val SEARCH_URL = "kisiler/tum_kisiler_arama.php"
         const val DELETE_URL = "kisiler/delete_kisiler.php"
         const val INSERT_URL = "kisiler/insert_kisiler.php"
+        const val UPDATE_URL = "kisiler/update_kisiler.php"
     }
 }

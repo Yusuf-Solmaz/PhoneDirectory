@@ -29,6 +29,7 @@ class PhoneInfoFragment : Fragment() {
 
     private lateinit var binding: FragmentPhoneInfoBinding
     private lateinit var viewModel: PhoneInfoViewModel
+    private  var id: Int? = null
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -83,6 +84,9 @@ class PhoneInfoFragment : Fragment() {
 
         val bundle : com.yusuf.phonedirectory.ui.PhoneInfoFragmentArgs by navArgs()
 
+
+
+
         when (bundle.info){
             0 -> {
                 binding.Save.visibility = Button.VISIBLE
@@ -92,17 +96,32 @@ class PhoneInfoFragment : Fragment() {
             }
 
             1 -> {
+
+                bundle.kisi.let {
+                    id = it!!.kisi_id
+                }
+
+
                 binding.update.visibility = Button.VISIBLE
                 binding.Save.visibility = Button.GONE
-                binding.editTextContactName.isEnabled = false
+                binding.editTextContactName.isEnabled = true
                 binding.toolbarPhoneInfo.isEnabled = false
 
                 binding.editTextContactName.text = Editable.Factory.getInstance().newEditable(bundle.kisi!!.kisi_ad)
                 binding.editTextContactNu.text = Editable.Factory.getInstance().newEditable(bundle.kisi!!.kisi_tel)
 
+
+
+                binding.update.setOnClickListener {
+                    viewModel.updateContact(id!!,binding.editTextContactName.text.toString(),binding.editTextContactNu.text.toString())
+                    Log.i("name",binding.editTextContactName.toString())
+                    goToMainDirectoryFragment()
+                }
             }
 
         }
+
+
 
 
     }
@@ -113,10 +132,10 @@ class PhoneInfoFragment : Fragment() {
         goToMainDirectoryFragment()
     }
 
-    fun updateContact(contactName: String, contactNumber:String){
-        viewModel.updateContact(contactName, contactNumber)
+    /*fun updateContact(id:Int,contactName: String, contactNumber:String){
+        viewModel.updateContact(id,contactName, contactNumber)
         goToMainDirectoryFragment()
-    }
+    }*/
 
     private fun goToMainDirectoryFragment(){
         val action = PhoneInfoFragmentDirections.actionPhoneInfoFragmentToMainDirectoryFragment()

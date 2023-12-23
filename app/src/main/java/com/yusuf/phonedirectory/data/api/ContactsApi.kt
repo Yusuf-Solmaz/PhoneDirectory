@@ -7,6 +7,7 @@ import com.yusuf.phonedirectory.utils.Utils.Companion.DELETE_URL
 import com.yusuf.phonedirectory.utils.Utils.Companion.GET_URL
 import com.yusuf.phonedirectory.utils.Utils.Companion.INSERT_URL
 import com.yusuf.phonedirectory.utils.Utils.Companion.SEARCH_URL
+import com.yusuf.phonedirectory.utils.Utils.Companion.UPDATE_URL
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -29,4 +30,8 @@ interface ContactsApi {
     @POST(INSERT_URL)
     @FormUrlEncoded
     suspend fun insertContact(@Field("kisi_ad") kisi_ad:String,@Field("kisi_tel") kisi_tel:String) : CRUDResult
+
+    @POST(UPDATE_URL)
+    @FormUrlEncoded
+    suspend fun updateContact(@Field("kisi_id") kisi_id: Int,@Field("kisi_ad") kisi_ad:String,@Field("kisi_tel") kisi_tel:String) : CRUDResult
 }
