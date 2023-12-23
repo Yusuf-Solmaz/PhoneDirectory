@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:name=".di.HiltApplication"
         android:windowSoftInputMode="adjustNothing"
         android:allowBackup="true"

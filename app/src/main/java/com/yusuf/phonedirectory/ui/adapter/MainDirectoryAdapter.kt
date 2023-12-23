@@ -1,6 +1,7 @@
 package com.yusuf.phonedirectory.ui.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -41,6 +42,7 @@ class MainDirectoryAdapter(val viewModel:MainDirectoryViewModel,private val cont
             Snackbar.make(it,"${contacts[position].kisi_ad} Will Delete!",Snackbar.LENGTH_LONG)
                 .setAction("Yes!"){
                     viewModel.deleteContact(contacts[position].kisi_id)
+                   // Log.i("id",contacts[position].kisi_id.toString())
                 }.show()
         }
     }

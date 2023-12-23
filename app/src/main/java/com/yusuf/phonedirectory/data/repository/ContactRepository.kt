@@ -1,12 +1,13 @@
 package com.yusuf.phonedirectory.data.repository
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
-import com.yusuf.phonedirectory.data.entity.Kisiler
+import com.yusuf.phonedirectory.data.api.ContactsApi
+import com.yusuf.phonedirectory.data.entity.CRUDResult
+import com.yusuf.phonedirectory.data.entity.ResultKisiler
 import com.yusuf.phonedirectory.data.service.ContactsService
-import java.util.ArrayList
 
-class ContactRepository : ContactsService  {
+class ContactRepository (val api:ContactsApi) : ContactsService  {
+
 
     override fun saveContact(contactName: String, contactNumber: String) {
         Log.i("saveInfo","$contactName   $contactNumber")
@@ -16,25 +17,19 @@ class ContactRepository : ContactsService  {
         Log.i("updateInfo","$contactName   $contactNumber")
     }
 
-    override fun searchContact(query: String) {
-        Log.i("updateInfo","$query")
+    override suspend fun searchContact(contact: String): ResultKisiler {
+        return api.searchContact(contact)
     }
 
-    override fun deleteContact(id: Int) {
-        Log.i("deleteInfo","$id")
+    override suspend fun deleteContact(kisi_id: Int): CRUDResult {
+        Log.i("deleteRepo",kisi_id.toString())
+        return api.deleteContact(kisi_id)
     }
 
-    override fun getAllContacts() : List<Kisiler>{
-        Log.i("getAllContacts", "done")
 
-        var contacts = ArrayList<Kisiler>()
+    override suspend fun getAllContacts() : ResultKisiler {
 
-        val kisi1 = Kisiler(1, "Yusuf", "05340334335")
-        val kisi2 = Kisiler(2, "Erkam", "053404513335")
-
-        contacts.add(kisi1)
-        contacts.add(kisi2)
-
-        return contacts
+        Log.i("getAllContacts", api.getAllContacts().kisiler.toString())
+        return api.getAllContacts()
     }
 }

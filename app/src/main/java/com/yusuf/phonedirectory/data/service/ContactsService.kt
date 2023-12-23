@@ -1,7 +1,10 @@
 package com.yusuf.phonedirectory.data.service
 
 import android.util.Log
+import com.yusuf.phonedirectory.data.entity.CRUDResult
 import com.yusuf.phonedirectory.data.entity.Kisiler
+import com.yusuf.phonedirectory.data.entity.ResultKisiler
+import retrofit2.Call
 import java.util.ArrayList
 
 interface ContactsService {
@@ -9,9 +12,9 @@ interface ContactsService {
 
     fun updateContact(contactName: String, contactNumber:String)
 
-    fun searchContact(query:String)
+    suspend fun searchContact(contact:String) : ResultKisiler
 
-    fun deleteContact(id:Int)
+    suspend fun deleteContact(kisi_id:Int) : CRUDResult
 
-    fun getAllContacts() : List<Kisiler>
+    suspend fun getAllContacts() : ResultKisiler
 }
