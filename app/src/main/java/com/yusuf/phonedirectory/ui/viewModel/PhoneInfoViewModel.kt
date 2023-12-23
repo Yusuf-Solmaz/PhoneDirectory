@@ -2,10 +2,13 @@ package com.yusuf.phonedirectory.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.yusuf.phonedirectory.data.repository.ContactRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class PhoneInfoViewModel : ViewModel() {
+@HiltViewModel
+class PhoneInfoViewModel @Inject constructor(var repo: ContactRepository) : ViewModel() {
 
-    private var repo = ContactRepository()
+
 
     fun saveContact(contactName: String, contactNumber: String){
         repo.saveContact(contactName, contactNumber)

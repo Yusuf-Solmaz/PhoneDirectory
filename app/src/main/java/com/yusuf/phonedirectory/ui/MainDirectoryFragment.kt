@@ -23,14 +23,17 @@ import com.yusuf.phonedirectory.data.entity.Kisiler
 import com.yusuf.phonedirectory.databinding.FragmentMainDirectoryBinding
 import com.yusuf.phonedirectory.ui.adapter.MainDirectoryAdapter
 import com.yusuf.phonedirectory.ui.viewModel.MainDirectoryViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class MainDirectoryFragment : Fragment(), SearchView.OnQueryTextListener {
 
 
     private lateinit var binding: FragmentMainDirectoryBinding
     private lateinit var adapter: MainDirectoryAdapter
-    private lateinit var contacts: MutableList<Kisiler>
+
 
     private lateinit var viewModel: MainDirectoryViewModel
 
@@ -60,13 +63,21 @@ class MainDirectoryFragment : Fragment(), SearchView.OnQueryTextListener {
 
         (activity as? AppCompatActivity)?.setSupportActionBar(binding.toolbar)
 
-       contacts = mutableListOf()
 
-        val kisi1 = Kisiler(1,"Yusuf","05340334335")
-        val kisi2 = Kisiler(1,"Erkam","053404513335")
 
-        contacts.add(kisi1)
-        contacts.add(kisi2)
+        viewModel.getAllContacts()
+
+        viewModel.contactList.observe(viewLifecycleOwner){
+
+            contacts ->
+
+            contacts?.let {
+                adapter = MainDirectoryAdapter(viewModel,it,requireContext())
+
+                binding.mainDirectoryRecyclerView.adapter = adapter
+            }
+
+        }
 
         requireActivity().addMenuProvider(object : MenuProvider{
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -85,9 +96,7 @@ class MainDirectoryFragment : Fragment(), SearchView.OnQueryTextListener {
 
         //binding.mainDirectoryRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        adapter = MainDirectoryAdapter(contacts,requireContext())
 
-        binding.mainDirectoryRecyclerView.adapter = adapter
         
 
 
@@ -98,7 +107,7 @@ class MainDirectoryFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextChange(p0: String?): Boolean {
-        Log.e("info",p0.toString())
+        viewModel.searchContact(p0!!)
         return true
     }
 
@@ -111,4 +120,9 @@ class MainDirectoryFragment : Fragment(), SearchView.OnQueryTextListener {
         findNavController().navigate(action)
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getAllContacts()
+    }
 }

@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.yusuf.phonedirectory.data.entity.Kisiler
 import com.yusuf.phonedirectory.databinding.FragmentMainDirectoryBinding
 import com.yusuf.phonedirectory.databinding.MainDirectoryRecyclerViewRowBinding
 import com.yusuf.phonedirectory.ui.MainDirectoryFragmentDirections
+import com.yusuf.phonedirectory.ui.viewModel.MainDirectoryViewModel
 
-class MainDirectoryAdapter(private val contacts: List<Kisiler>, val context:Context) : RecyclerView.Adapter<MainDirectoryAdapter.MainDirectoryHolder>()  {
+class MainDirectoryAdapter(val viewModel:MainDirectoryViewModel,private val contacts: List<Kisiler>, val context:Context) : RecyclerView.Adapter<MainDirectoryAdapter.MainDirectoryHolder>()  {
 
     class MainDirectoryHolder(val binding: MainDirectoryRecyclerViewRowBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -33,6 +35,13 @@ class MainDirectoryAdapter(private val contacts: List<Kisiler>, val context:Cont
             val action = MainDirectoryFragmentDirections.actionMainDirectoryFragmentToPhoneInfoFragment(contacts[position],1)
             holder.binding.root.findNavController().navigate(action)
 
+        }
+
+        holder.binding.imageView.setOnClickListener {
+            Snackbar.make(it,"${contacts[position].kisi_ad} Will Delete!",Snackbar.LENGTH_LONG)
+                .setAction("Yes!"){
+                    viewModel.deleteContact(contacts[position].kisi_id)
+                }.show()
         }
     }
 
